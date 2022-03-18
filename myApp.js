@@ -1,7 +1,8 @@
 require('dotenv').config();
 var mongoose = require('mongoose');
+var mongoURI = "mongodb+srv://fcova89:E9FJYEwQ4KttkuZs@cluster0.lfhxz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const personSchema = new mongoose.Schema({ //creo Schema per un modello
   name: { 
