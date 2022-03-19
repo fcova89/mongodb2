@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { Model } = require('mongoose');
 var mongoose = require('mongoose');
 var mongoURI = "mongodb+srv://fcova89:E9FJYEwQ4KttkuZs@cluster0.lfhxz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
@@ -35,7 +36,25 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  let francesco = {
+    name: 'Francesco Cova',
+    age: 33,
+    favoriteFoods: ['Goma Wakame','Sushi'] 
+  };
+  let michela = {
+    name: 'Michela Bistoletti',
+    age: 33,
+    favoriteFoods: ['Pasta','Pizza'] 
+  };
+
+  Person.create([francesco,michela],(err,arrayOfPeople)=>{
+    if (err) {
+      return done(err);
+    } else {//se promise non mantenuta torna error
+    done(null , arrayOfPeople)
+    };
+  });
+  
 };
 
 const findPeopleByName = (personName, done) => {
