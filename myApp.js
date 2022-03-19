@@ -49,7 +49,7 @@ const createManyPeople = (arrayOfPeople, done) => {
 
   arrayOfPeople = [francesco,michela]
 
-  Person.create(arrayOfPeople,(err,data)=>{
+  Person.create(arrayOfPeople).save((err,data)=>{
     console.log("Promise mantenuta ->" + data );
     console.log("Promise non mantenuta ->" + err);
     if (err) {
