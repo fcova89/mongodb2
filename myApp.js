@@ -49,26 +49,17 @@ const createManyPeople = (arrayOfPeople, done) => {
 
   arrayOfPeople = [francesco,michela]
 
-  Person.create(arrayOfPeople);
+  Person.create(arrayOfPeople,(err,data)=>{
+    console.log("Promise mantenuta ->" + data );
+    console.log("Promise non mantenuta ->" + err);
+    if (err) {
+      return done(err);
+    } else {//se promise non mantenuta torna error
+    done(null , data)
+    };
+  });
 
-  francesco.save((err,data)=>{
-    console.log("Promise mantenuta ->" + data );
-    console.log("Promise non mantenuta ->" + err);
-    if (err) {
-      return done(err);
-    } else {//se promise non mantenuta torna error
-    done(null , data)
-    };
-  });
-  michela.save((err,data)=>{
-    console.log("Promise mantenuta ->" + data );
-    console.log("Promise non mantenuta ->" + err);
-    if (err) {
-      return done(err);
-    } else {//se promise non mantenuta torna error
-    done(null , data)
-    };
-  });
+  
   
 };
 
