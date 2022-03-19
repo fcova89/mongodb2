@@ -67,8 +67,18 @@ const createManyPeople = (arrayOfPeople,done) => {
   
 };
 
-const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+var personName = 'Francesco Cova' //creo variabile personName
+
+const findPeopleByName = (personName, done) => { //funzione di partenza
+  
+  Person.find({ name: personName}, function (err, docs) { //funzione find per il model Person dove come filtro imposto il nome
+    //inoltre avendo inserito la funzione di callback la query di ritorno viene inviata alla callback
+    if (err) {
+      return done(err)
+    }
+    done(null, docs);
+  });
+  
 };
 
 const findOneByFood = (food, done) => {
