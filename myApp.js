@@ -47,11 +47,15 @@ const createManyPeople = (arrayOfPeople, done) => {
     favoriteFoods: ['Pasta','Pizza'] 
   };
 
-  Person.create([francesco,michela],(err,arrayOfPeople)=>{
+  arrayOfPeople = [francesco,michela]
+
+  Person.create(arrayOfPeople,(err,data)=>{
+    console.log("Promise mantenuta ->" + data );
+    console.log("Promise non mantenuta ->" + err);
     if (err) {
       return done(err);
     } else {//se promise non mantenuta torna error
-    done(null , arrayOfPeople)
+    done(null , data)
     };
   });
   
