@@ -35,19 +35,23 @@ const createAndSavePerson = (done) => {
   }); //funzione che torna una Promise
 };
 
-const createManyPeople = (arrayOfPeople, done) => {
-  let francesco = {
-    name: 'Francesco Cova',
-    age: 33,
-    favoriteFoods: ['Goma Wakame','Sushi'] 
-  };
-  let michela = {
-    name: 'Michela Bistoletti',
-    age: 33,
-    favoriteFoods: ['Pasta','Pizza'] 
-  };
 
-  arrayOfPeople = [francesco,michela]
+
+let francesco = {
+  name: 'Francesco Cova',
+  age: 33,
+  favoriteFoods: ['Goma Wakame','Sushi'] 
+};
+let michela = {
+  name: 'Michela Bistoletti',
+  age: 33,
+  favoriteFoods: ['Pasta','Pizza'] 
+};
+
+arrayOfPeople = [francesco,michela]// essendo un parametro della funzione createManyPeople, deve essere creato all'esterno
+
+
+const createManyPeople = (arrayOfPeople,done) => {
 
   Person.create(arrayOfPeople,(err,data)=>{
     console.log("Promise mantenuta ->" + data );
