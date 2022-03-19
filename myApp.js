@@ -21,15 +21,17 @@ const createAndSavePerson = (done) => {
     age: 33,
     favoriteFoods: ['Goma Wakame','Sushi'] 
   });
-  console.log(Francesco);
 
-  Francesco.save()
+  Francesco.save(function(err,data){
+    console.log("Promise mantenuta ->" + data );
+    console.log("Promise non mantenuta ->" + err);
 
-  console.log(Francesco);
-
-  done(null , data);
-
-  console.log(data);
+    if (err) {
+      return done(err);
+    } else {//se promise non mantenuta torna error
+    done(null , data)
+    };
+  }); //funzione che torna una Promise
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
