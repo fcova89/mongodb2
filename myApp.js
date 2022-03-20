@@ -129,8 +129,22 @@ const findEditThenSave = (personId, done) => {
   });
 };
 
+let personName = "Michela Bistoletti"
+
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
+  //funzione find per il model Person dove come filtro imposto il nome
+  Person.findOneAndUpdate({ name: personName},{age: ageToSet},{ new: true }, function (err, updatedPerson) { 
+    //parametro 1 -> Filtro -> filtra per nome
+    //parametro 2 -> Update key age in  -> ageToSet
+    //paremetro 3 -> Opzione che if true, return the modified document; if false return the original. defaults to false
+    console.log(updatedPerson); // mostra cosa è updated person -> il risultato del metodo findOneAndUpdate passato alla funzione di callback
+    if (err) {
+      return done(err)
+    }
+    done(null, updatedPerson);
+  });
+
 
   done(null /*, data*/);
 };
