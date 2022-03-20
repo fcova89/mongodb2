@@ -125,8 +125,7 @@ const findEditThenSave = (personId, done) => {
         }
         console.log(savedPerson);//verifica persona salvata
         done(null, savedPerson); //ritorna la persona salvata
-      });
-    });    
+      });   
   });
 };
 
