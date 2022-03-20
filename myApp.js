@@ -18,7 +18,7 @@ let Person = mongoose.model('Person', personSchema); //assegno a Person il model
 let francesco = new Person({
   name: 'Francesco Cova',
   age: 33,
-  favoriteFoods: ['Goma Wakame','Sushi'] 
+  favoriteFoods: ['Goma Wakame','Sushi','burrito'] 
 });
 
 const createAndSavePerson = (done) => {
