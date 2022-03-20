@@ -145,7 +145,20 @@ const findAndUpdate = (personName, done) => {
 };
 
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findById({ _id: personId}, function (err, foundPerson) {
+    if (err) {
+      return done(err) //se callback ha errore, ritorna errore
+    }
+    console.log('La persona trovata è' + foundPerson);//verifica persona trovata
+    
+    Person.findByIdAndRemove(personId,(err,personDeleted)=>{
+      console.log(personDeleted);//verificare la persona eliminata?
+      if (err) {
+        return done(err)
+      }
+      done(null, personDeleted);
+    });
+  });
 };
 
 const removeManyPeople = (done) => {
