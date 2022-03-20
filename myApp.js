@@ -15,14 +15,13 @@ const personSchema = new mongoose.Schema({ //creo Schema per un modello
 
 let Person = mongoose.model('Person', personSchema); //assegno a Person il modello basato sullo schema PersonShcema
 
+let francesco = new Person({
+  name: 'Francesco Cova',
+  age: 33,
+  favoriteFoods: ['Goma Wakame','Sushi'] 
+});
 
 const createAndSavePerson = (done) => {
-  let francesco = new Person({
-    name: 'Francesco Cova',
-    age: 33,
-    favoriteFoods: ['Goma Wakame','Sushi'] 
-  });
-
   francesco.save(function(err,data){
     console.log("Promise mantenuta ->" + data );
     console.log("Promise non mantenuta ->" + err);
@@ -36,7 +35,7 @@ const createAndSavePerson = (done) => {
 };
 
 
-
+/*
 let francesco = {
   name: 'Francesco Cova',
   age: 33,
@@ -47,8 +46,9 @@ let michela = {
   age: 33,
   favoriteFoods: ['Pasta','Pizza'] 
 };
+*/
 
-arrayOfPeople = [francesco,michela]// essendo un parametro della funzione createManyPeople, deve essere creato all'esterno
+//arrayOfPeople = [francesco,michela]// essendo un parametro della funzione createManyPeople, deve essere creato all'esterno
 
 
 const createManyPeople = (arrayOfPeople,done) => {
