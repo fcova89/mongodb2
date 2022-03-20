@@ -173,7 +173,8 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-  var foundPerson = Person.find({name: personName}).exec()
+  var foundPerson = Person.find({name: personName})
+
   console.log(foundPerson);
   done (null, foundPerson);
   //foundPerson.sort({name : 'asc'})
