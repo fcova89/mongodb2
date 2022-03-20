@@ -17,13 +17,13 @@ let Person = mongoose.model('Person', personSchema); //assegno a Person il model
 
 
 const createAndSavePerson = (done) => {
-  let Francesco = new Person({
+  let francesco = new Person({
     name: 'Francesco Cova',
     age: 33,
     favoriteFoods: ['Goma Wakame','Sushi'] 
   });
 
-  Francesco.save(function(err,data){
+  francesco.save(function(err,data){
     console.log("Promise mantenuta ->" + data );
     console.log("Promise non mantenuta ->" + err);
 
@@ -98,18 +98,37 @@ const findOneByFood = (food, done) => {
 let personId = "1234"
 
 const findPersonById = (personId, done) => {
-  Person.findById({ _id: personId}, function (err, docs) {
+  Person.findById({ _id: personId}, function (err, record) {
     if (err) {
       return done(err)
     }
-    done(null, docs);
+    done(null, record);
   });
 };
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-
-  done(null /*, data*/);
+  //step1 cerco la persona da Id
+  Person.findById({ _id: personId}, function (err, foundPerson) {
+    if (err) {
+      return done(err) //se callback ha errore, ritorna errore
+    }
+    console.log(foundPerson);//verifica persona trovata
+    //modifico il record trovato
+    foundPerson.update({favoriteFoods: favoriteFoods.push(foodToAdd)},function (err, editedPerson) {
+      if (err) {
+        return done(err)
+      }
+      console.log(editedPerson);//verifica persona cambiata
+      editedPerson.save(function (err, savedPerson) {
+        if (err) {
+          return done(err)
+        }
+        console.log(savedPerson);//verifica persona salvata
+        done(null, savedPerson); //ritorna la persona salvata
+      });
+    });    
+  });
 };
 
 const findAndUpdate = (personName, done) => {
