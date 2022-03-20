@@ -179,7 +179,7 @@ const queryChain = (done) => {
       return done(err)
     }
     foundPeople.sort({name : 'asc'}) //metti in ordine ascendente?
-    console.log('Le persone in ordine sono 'foundPeople);
+    console.log('Le persone in ordine sono '+ foundPeople);
   })
 
   done(null, foundPeople);
