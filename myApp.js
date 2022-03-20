@@ -173,8 +173,16 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
+  Person.find({favoriteFoods : [foodToSearch]},function (err,foundPeople) {//estrai persone a cui piace il burrito
+    console.log(`Le persone a cui piace il ${foodToSearch} sono ${foundPeople}`);
+    if (err) {
+      return done(err)
+    }
+    foundPeople.sort({name : 'asc'}) //metti in ordine ascendente?
+    console.log('Le persone in ordine sono 'foundPeople);
+  })
 
-  done(null /*, data*/);
+  done(null, foundPeople);
 };
 
 /** **Well Done !!**
