@@ -173,8 +173,7 @@ const removeManyPeople = (done) => {
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-  console.log
-  Person.find({favoriteFoods: [foodToSearch]},function (err,foundPeople) {//estrai persone a cui piace il burrito
+  Person.find({name: personName},function (err,foundPeople) {//estrai persone a cui piace il burrito
     console.log(`Le persone a cui piace il ${foodToSearch} sono ` + foundPeople);
     if (err) {
       console.log('Errore da qualche parte' + err);
