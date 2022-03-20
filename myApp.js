@@ -129,8 +129,6 @@ const findEditThenSave = (personId, done) => {
   });
 };
 
-let personName = "Michela Bistoletti"
-
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
   //funzione find per il model Person dove come filtro imposto il nome
