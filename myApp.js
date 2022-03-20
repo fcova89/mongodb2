@@ -113,14 +113,13 @@ const findEditThenSave = (personId, done) => {
     if (err) {
       return done(err) //se callback ha errore, ritorna errore
     }
-    console.log(foundPerson);//verifica persona trovata
+    console.log('La persona trovata è' + foundPerson);//verifica persona trovata
     //modifico il record trovato
-    foundPerson.update({favoriteFoods: favoriteFoods.push(foodToAdd)},function (err, editedPerson) {
-      if (err) {
-        return done(err)
-      }
-      console.log(editedPerson);//verifica persona cambiata
-      editedPerson.save(function (err, savedPerson) {
+
+    foundPerson.favoriteFoods.push(foodToAdd);
+
+      console.log('La persona cambiata è' + foundPerson);//verifica persona cambiata
+      foundPerson.save(function (err, savedPerson) {
         if (err) {
           return done(err)
         }
